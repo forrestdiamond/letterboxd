@@ -1,0 +1,77 @@
+---
+title: "Playing Around with Letterboxd Data"
+author: "Forrest Diamond"
+date: "November 20, 2019"
+output: html_document
+---
+
+## Prep the workspace
+
+```{r prep, message = FALSE}
+library("tidyverse")
+```
+
+## Watch Counts
+
+Let's have a quick look at my movie watching counts.
+
+```{r watch-counts}
+
+diary <- read.csv(file.path(here::here(), "data", "diary.csv"))
+
+diary %>% 
+  mutate(year_month = lubridate::as_date(paste0(lubridate::year(Watched.Date), "-", 
+                                                lubridate::month(Watched.Date), "-01"))) %>% 
+  count(year_month) %>% 
+  ggplot() +
+  geom_bar(aes(x = year_month, y = n), stat = "identity") +
+  labs(x = "Date Watched",
+       y = "Number of Films Watched",
+       title = "Perhaps I've Been Waitching Too Many Movies...") +
+  stat_smooth(aes(x = year_month, y = n), 
+              method = "loess",
+              se = FALSE) +
+  theme_minimal()
+
+```
+
+## Ratings
+
+Let's see if I'm using the whole scale for my ratings.
+
+```{r ratings}
+
+ratings <- read.csv(file.path(here::here(), "data", "ratings.csv"))
+
+ratings %>% 
+  ggplot() +
+  geom_point(aes(x = lubridate::as_date(Date), y = Rating)) +
+  stat_smooth(aes(x = lubridate::as_date(Date), y = Rating), 
+              method = "loess",
+              se = FALSE) +
+  scale_x_date(labels = scales::date_format("%B, %Y")) +
+  theme_minimal() +
+  labs(x = "Date Watched",
+       y = "Rating",
+       title = "I must have had a plan in late 2018...",
+       subtitle = "(It didn't last long)")
+
+```
+
+But why doesn't the `ratings.csv` file go back as far as the `diary.csv` file?
+
+```{r ratings-error}
+
+ratings %>% 
+  count(Date) %>% 
+  ggplot() +
+  geom_bar(aes(x = lubridate::as_date(Date), y = n), stat = "identity") +
+  labs(title = "HMMMM",
+       x = "Date Watched",
+       y = "Number of Films Watched") +
+  scale_x_date(labels = scales::date_format("%B, %Y")) +
+  theme_minimal()
+
+```
+
+HMMM Indeed...
