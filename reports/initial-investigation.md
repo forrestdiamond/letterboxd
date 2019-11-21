@@ -1,22 +1,21 @@
----
-title: "Playing Around with Letterboxd Data"
-author: "Forrest Diamond"
-date: "November 20, 2019"
-output: github_document
----
+Playing Around with Letterboxd Data
+================
+Forrest Diamond
+November 20, 2019
 
-## Prep the workspace
+Prep the workspace
+------------------
 
-```{r prep, message = FALSE}
+``` r
 library("tidyverse")
 ```
 
-## Watch Counts
+Watch Counts
+------------
 
 Let's have a quick look at my movie watching counts.
 
-```{r watch-counts}
-
+``` r
 diary <- read.csv(file.path(here::here(), "data", "diary.csv"))
 
 diary %>% 
@@ -32,15 +31,16 @@ diary %>%
               method = "loess",
               se = FALSE) +
   theme_minimal()
-
 ```
 
-## Ratings
+![](initial-investigation_files/figure-markdown_github/watch-counts-1.png)
+
+Ratings
+-------
 
 Let's see if I'm using the whole scale for my ratings.
 
-```{r ratings}
-
+``` r
 ratings <- read.csv(file.path(here::here(), "data", "ratings.csv"))
 
 ratings %>% 
@@ -55,13 +55,13 @@ ratings %>%
        y = "Rating",
        title = "I must have had a plan in late 2018...",
        subtitle = "(It didn't last long)")
-
 ```
+
+![](initial-investigation_files/figure-markdown_github/ratings-1.png)
 
 But why doesn't the `ratings.csv` file go back as far as the `diary.csv` file?
 
-```{r ratings-error}
-
+``` r
 ratings %>% 
   count(Date) %>% 
   ggplot() +
@@ -71,7 +71,8 @@ ratings %>%
        y = "Number of Films Watched") +
   scale_x_date(labels = scales::date_format("%B, %Y")) +
   theme_minimal()
-
 ```
+
+![](initial-investigation_files/figure-markdown_github/ratings-error-1.png)
 
 HMMM Indeed...
