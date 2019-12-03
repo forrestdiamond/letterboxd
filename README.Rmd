@@ -9,6 +9,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+library("tidyverse")
 ```
 # letterboxd
 
@@ -16,3 +17,23 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 Let's have some fun with my letterboxd data...
+
+## Data
+
+Letterboxd has several different files for data analysis. For instance, the `diary` file looks like this:
+```{r diary}
+diary <- read.csv(file.path(here::here(), "data", "diary.csv"))
+diary %>% 
+  as_tibble() %>% 
+  sample_n(5)
+```
+
+Another useful file might be `watchlist`:
+```{r watchlist}
+watchlist <- read.csv(file.path(here::here(), "data", "watchlist.csv"))
+watchlist %>% 
+  as_tibble() %>% 
+  sample_n(5)
+```
+
+You can view all available files by checking the `data/` folder.
