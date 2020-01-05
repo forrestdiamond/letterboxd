@@ -14,7 +14,7 @@ Date,Name,Year,Letterboxd URI,Rating
 2018-03-23,Layer Cake,2004,https://letterboxd.com/film/layer-cake/,3.5
 2018-03-23,Kill the Messenger,2014,https://letterboxd.com/film/kill-the-messenger/,4
 2018-03-23,Enter the Dragon,1973,https://letterboxd.com/film/enter-the-dragon/,2
-2018-03-23,Drive,2011,https://letterboxd.com/film/drive-2011/,3
+2018-03-23,Drive,2011,https://letterboxd.com/film/drive-2011/,3.5
 2018-03-23,Boy,2010,https://letterboxd.com/film/boy-2010/,4
 2018-03-23,Justice League,2017,https://letterboxd.com/film/justice-league/,2
 2018-03-23,"Lock, Stock and Two Smoking Barrels",1998,https://letterboxd.com/film/lock-stock-and-two-smoking-barrels/,3
@@ -150,7 +150,7 @@ Date,Name,Year,Letterboxd URI,Rating
 2018-03-23,Bridge of Spies,2015,https://letterboxd.com/film/bridge-of-spies/,3
 2018-03-23,The Hateful Eight,2015,https://letterboxd.com/film/the-hateful-eight/,5
 2018-03-23,Room,2015,https://letterboxd.com/film/room-2015/,5
-2018-03-23,"I, Tonya",2017,https://letterboxd.com/film/i-tonya/,3.5
+2018-03-23,"I, Tonya",2017,https://letterboxd.com/film/i-tonya/,3
 2018-03-28,Four Brothers,2005,https://letterboxd.com/film/four-brothers/,4
 2018-04-08,Black Panther,2018,https://letterboxd.com/film/black-panther-2018/,3.5
 2018-04-08,Four Lions,2010,https://letterboxd.com/film/four-lions/,4
@@ -344,3 +344,32 @@ Date,Name,Year,Letterboxd URI,Rating
 2019-11-20,Joker,2019,https://letterboxd.com/film/joker-2019/,3.5
 2019-11-21,GoldenEye,1995,https://letterboxd.com/film/goldeneye/,3.5
 2019-11-21,Tomorrow Never Dies,1997,https://letterboxd.com/film/tomorrow-never-dies/,4
+2019-11-24,Once Upon a Time… in Hollywood,2019,https://letterboxd.com/film/once-upon-a-time-in-hollywood/,3.5
+2019-11-24,Shaun of the Dead,2004,https://letterboxd.com/film/shaun-of-the-dead/,2.5
+2019-11-24,Kingsman: The Secret Service,2014,https://letterboxd.com/film/kingsman-the-secret-service/,3.5
+2019-11-24,Kingsman: The Golden Circle,2017,https://letterboxd.com/film/kingsman-the-golden-circle/,1.5
+2019-11-25,Fantastic Mr. Fox,2009,https://letterboxd.com/film/fantastic-mr-fox/,4.5
+2019-11-27,Mad Max: Fury Road,2015,https://letterboxd.com/film/mad-max-fury-road/,4.5
+2019-11-28,Minions,2015,https://letterboxd.com/film/minions/,2
+2019-12-01,Harry Potter and the Half-Blood Prince,2009,https://letterboxd.com/film/harry-potter-and-the-half-blood-prince/,2
+2019-12-02,The Last Black Man in San Francisco,2019,https://letterboxd.com/film/the-last-black-man-in-san-francisco/,4.5
+2019-12-02,Yesterday,2019,https://letterboxd.com/film/yesterday-2019/,3
+2019-12-02,Harry Potter and the Deathly Hallows: Part 2,2011,https://letterboxd.com/film/harry-potter-and-the-deathly-hallows-part-2/,2.5
+2019-12-08,El Camino: A Breaking Bad Movie,2019,https://letterboxd.com/film/el-camino-a-breaking-bad-movie/,3.5
+2019-12-13,Fast & Furious Presents: Hobbs & Shaw,2019,https://letterboxd.com/film/fast-furious-presents-hobbs-shaw/,2.5
+2019-12-13,Angel Has Fallen,2019,https://letterboxd.com/film/angel-has-fallen/,1.5
+2019-12-15,6 Underground,2019,https://letterboxd.com/film/6-underground/,1
+2019-12-27,Catch Me If You Can,2002,https://letterboxd.com/film/catch-me-if-you-can-2002/,3.5
+2019-12-27,Hustlers,2019,https://letterboxd.com/film/hustlers-2019/,4.5
+2019-12-27,Star Wars: The Rise of Skywalker,2019,https://letterboxd.com/film/star-wars-the-rise-of-skywalker/,3
+2019-12-28,The Irishman,2019,https://letterboxd.com/film/the-irishman-2019/,4
+2019-12-30,Self/less,2015,https://letterboxd.com/film/self-less/,1
+2019-12-31,Dr. No,1962,https://letterboxd.com/film/dr-no/,4
+2020-01-01,From Russia with Love,1963,https://letterboxd.com/film/from-russia-with-love/,4
+2020-01-01,Goldfinger,1964,https://letterboxd.com/film/goldfinger/,3
+2020-01-01,Thunderball,1965,https://letterboxd.com/film/thunderball/,2
+2020-01-02,Panic Room,2002,https://letterboxd.com/film/panic-room/,4
+2020-01-04,Parasite,2019,https://letterboxd.com/film/parasite-2019/,5
+2020-01-05,Shot Caller,2017,https://letterboxd.com/film/shot-caller/,3
+2020-01-05,Sweet Virginia,2017,https://letterboxd.com/film/sweet-virginia/,3
+2020-01-05,A Serious Man,2009,https://letterboxd.com/film/a-serious-man/,3
