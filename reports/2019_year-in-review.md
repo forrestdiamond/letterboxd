@@ -27,7 +27,7 @@ diary %>%
   geom_point(aes(x = date, y = running_total)) +
   labs(x = "Date Watched",
        y = "Cumulative Total",
-       title = "That's a lot of movies") +
+       title = "That's a lot of movies!") +
   theme_minimal() +
   scale_x_date()
 ```
@@ -47,11 +47,12 @@ ratings %>%
   count(Rating) %>%
   mutate(mean = weighted.mean(Rating, w = n)) %>%
   ggplot() +
-  geom_bar(aes(x = Rating, y = n), stat = "identity") + 
+  geom_bar(aes(x = Rating, y = n, fill = Rating), stat = "identity") + 
   geom_vline(aes(xintercept = mean), color = "red", alpha = 0.5, size = 3) +
   theme_minimal() +
   labs(x = "Rating",
-       y = "Number of Films")
+       y = "Number of Films") +
+  scale_fill_viridis_c(limits = c(1, 5))
 ```
 
 ![](2019_year-in-review_files/figure-gfm/ratings-1.png)<!-- -->
@@ -85,10 +86,11 @@ ratings %>%
   filter(!is_split) %>%
   select(Rating, total_n) %>%
   ggplot() +
-  geom_bar(aes(x = Rating, y = total_n), stat = "identity") + 
+  geom_bar(aes(x = Rating, y = total_n, fill = Rating), stat = "identity") + 
   theme_minimal() +
   labs(x = "Rating",
-       y = "Number of Films")
+       y = "Number of Films") +
+  scale_fill_viridis_c(limits = c(1, 5))
 ```
 
 ![](2019_year-in-review_files/figure-gfm/simplified-ratings-1.png)<!-- -->
@@ -101,59 +103,80 @@ Now let’s see the best movies I saw this year, and the best movies from
 this year.
 
 ``` r
-ratings <- read.csv(file.path(here::here(), "data", "ratings.csv"))
+ratings <- read.csv(file.path(here::here(), "data", "ratings.csv"), fileEncoding = "UTF-8")
 
 ratings %>% 
-  mutate(year = lubridate::year(Date)) %>% 
-  filter(year == 2019) %>%
-  arrange(-Rating) %>%
-  head(10) %>%
-  mutate(place = row_number()) %>%
+  mutate(year_watched = lubridate::year(Date)) %>% 
+  filter(year_watched == 2019) %>%
+  mutate(Rank = rank(-Rating, ties.method = "random")) %>% 
+  filter(Rank <= 10) %>% 
   ggplot() +
-  geom_bar(aes(x = place, y = Rating, fill = Rating), stat = "identity") +
-  geom_text(aes(x = place, y = 0, label = Name), hjust = 0, color = "white") +
+  geom_bar(aes(x = Rank, y = Rating, fill = Rating), stat = "identity") +
+  geom_text(aes(x = Rank, y = 0, label = Name), hjust = 0) +
   theme_minimal() +
   coord_flip() +
-  scale_x_reverse()
+  scale_x_reverse() +
+  scale_fill_viridis_c(limits = c(1, 5))
 ```
 
 ![](2019_year-in-review_files/figure-gfm/top-movies-1.png)<!-- -->
 
+Wow, not a lot of movies made in 2019 on that list. What if we only look
+at those?
+
 ``` r
-ratings <- read.csv(file.path(here::here(), "data", "ratings.csv"))
+ratings <- read.csv(file.path(here::here(), "data", "ratings.csv"), fileEncoding = "UTF-8")
 
 ratings %>% 
-  mutate(year = lubridate::year(Date)) %>% 
-  filter(year == 2019, Year == 2019) %>%
-  arrange(-Rating) %>%
-  head(10) %>%
-  mutate(place = row_number()) %>%
+  filter(Year == 2019) %>%
+  mutate(Rank = rank(-Rating, ties.method = "random")) %>% 
+  filter(Rank <= 10) %>% 
   ggplot() +
-  geom_bar(aes(x = place, y = Rating, fill = Rating), stat = "identity") +
-  geom_text(aes(x = place, y = 0, label = Name), hjust = 0, color = "white") +
+  geom_bar(aes(x = Rank, y = Rating, fill = Rating), stat = "identity") +
+  geom_text(aes(x = Rank, y = 0, label = Name), hjust = 0) +
   theme_minimal() +
   coord_flip() +
-  scale_x_reverse()
+  scale_x_reverse() +
+  scale_fill_viridis_c(limits = c(1, 5))
 ```
 
 ![](2019_year-in-review_files/figure-gfm/top-movies-2019-1.png)<!-- -->
-But why doesn’t the `ratings.csv` file go back as far as the `diary.csv`
-file?
 
-```` 
-                  ```r
-                                      ratings %>% 
-                  count(Date) %>% 
-                  ggplot() +
-                  geom_bar(aes(x = lubridate::as_date(Date), y = n), stat = "identity") +
-                  labs(title = "HMMMM",
-                       x = "Date Watched",
-                       y = "Number of Films Watched") +
-                  scale_x_date(labels = scales::date_format("%B, %Y")) +
-                  theme_minimal()
-                  ```
-                  
-                  ![](2019_year-in-review_files/figure-gfm/ratings-error-1.png)<!-- -->
-                
-                HMMM Indeed...
-````
+That feels like a decent list, to me.
+
+## Reviews
+
+I don’t think I did a great job recording reviews- how’d I do?
+
+``` r
+reviews <- read_csv(file.path(here::here(), "data", "reviews.csv"))
+```
+
+    ## Parsed with column specification:
+    ## cols(
+    ##   Date = col_date(format = ""),
+    ##   Name = col_character(),
+    ##   Year = col_double(),
+    ##   `Letterboxd URI` = col_character(),
+    ##   Rating = col_double(),
+    ##   Rewatch = col_character(),
+    ##   Review = col_character(),
+    ##   Tags = col_character(),
+    ##   `Watched Date` = col_date(format = "")
+    ## )
+
+``` r
+reviews %>% 
+  filter(lubridate::year(`Watched Date`) == 2019) %>%
+  nrow()
+```
+
+    ## [1] 42
+
+Not bad…
+
+## 2020 Goals
+
+  - [ ] Watch 150 Movies
+  - [ ] Write 75 Reviews
+  - [ ] Get closer to a normal distribution in my ratings
